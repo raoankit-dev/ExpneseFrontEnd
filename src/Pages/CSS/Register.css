@@ -1,0 +1,120 @@
+:root {
+  --black: #111111;
+  --cream: #f2f2f2;
+
+  --yellow: #ffd93d;
+  --green: #00c49a;
+  --blue: #4d7cfe;
+  --red: #ff5c5c;
+
+  --border: 3px solid #111111;
+  --shadow: 6px 6px 0 #111111;
+
+  --heading: "Space Grotesk", sans-serif;
+  --body: "Inter", sans-serif;
+}
+
+
+.registration-bg{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cream);
+    height: 100dvh;
+    width: 100dvw;
+    
+}
+
+.rimg-left{
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+}
+
+.rimg-right{
+    height: 100%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.register-card{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+    border: var(--border);
+    padding: 12px;
+    box-shadow: var(--shadow);
+    border-radius: 5px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header h2{
+    font-size: 2.3rem;
+    font-weight: 900;
+    /* font-family: var(--heading); */
+}
+
+.header p {
+    text-align: center;
+    font-weight: 500;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.fields input {
+    height: 2rem;
+    width: 19vw;
+    border: 2px solid;
+    padding: 5px;
+    border-radius: 2px;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.fields input:hover {
+    box-shadow: 3px 3px 0 royalblue;
+}
+
+.fields input:focus{
+    outline: none;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.register-btn {
+    border: var(--border);
+    background-color: var(--yellow);
+    font: var(--heading);
+    font-weight: 800;
+    height: 3rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.register-btn:hover {
+    transform: translateY(2px);
+    box-shadow: 3px 3px 0 black;
+}
+.register-btn:active {
+    scale: 1.1;
+}

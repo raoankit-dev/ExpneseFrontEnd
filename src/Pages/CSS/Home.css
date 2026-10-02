@@ -1,0 +1,106 @@
+.container {
+    /* padding: 10px; */
+    height: 100dvh;
+    width: 100%;
+    background-image: url('../../Assits/bg-home.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.home-header {
+    left: 6rem;
+    position: absolute;
+    top: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 3.5rem;
+    width: 80%;
+    border: 3px solid black;
+    border-radius: 6px;
+}
+
+.home-logo {
+    /* background-color: #00c49a; */
+    width: 7rem;
+    height: 3rem;
+    display: flex;
+}
+
+.home-logo img {
+    width: 100%;
+}
+
+.home-links {
+    display: flex;
+    gap: 15px;
+}
+
+.home-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    background-color: #00c49a;
+    padding: 8px 20px;
+    border-radius: 3px;
+    box-shadow: 3px 3px 0 black;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.home-links a:hover{
+    transform: translateY(1px);
+    box-shadow: 1.5px 1.5px 0 black;
+}
+
+.home-links a:active{
+    scale: 1.1;
+    color: black;
+}
+
+.hero {
+    position: absolute;
+    height: 60dvh;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    left: 10rem;
+    top: 6rem;
+}
+
+.greet {
+    /* width: 100%; */
+    /* display: flex; */
+    /* align-items: center; */
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+span {
+    width: 50%;
+    font-size: 18px;
+    color: black;
+    font-family: sans-serif;
+    font-weight: 600;
+    backdrop-filter: blur(100px);
+    background-color: #00c49a38;
+    padding: 3px 5px;
+    border-radius: 20px;
+    border: 1px solid;
+}
+
+.descr {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: rgba(37, 36, 36, 0.741);
+    width: 60%;
+    text-align: center;
+    font-size: 17px;
+}

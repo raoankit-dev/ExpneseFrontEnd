@@ -1,0 +1,164 @@
+
+.main-container {
+    height: 100dvh;
+    width: 100dvw;
+    padding: 5px;
+    display: flex;
+    background-color: black;
+    gap: 5px;
+    position: relative;
+}
+
+.side-pannel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    /* gap: 3rem; */
+    width: 20rem;
+    height: 100%;
+    background-color: rgb(153, 184, 241);
+    border-radius: 6px;
+}
+
+.dash-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dash-logo img{
+    width: 90%;
+}
+
+.dash-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dash-nav li {
+    cursor: pointer;
+    list-style: none;
+    padding: 1rem 4rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    border: var(--border);
+    box-shadow: 3px 3px ;
+}
+
+.dash-nav li:hover {
+    background-color: var(--blue);
+    box-shadow: 0 0 5px var(--blue);
+}
+
+.dash-nav a{
+    text-decoration: none;
+    color: black;
+    font-weight: 900;
+    font-family: var(--heading);
+}
+
+.dash-slogan {
+    display: flex;
+    width: 90%;
+    height: 45%;
+}
+
+.main-dashboard {
+    width: 100%;
+    height: 100%;
+    background-color: var(--cream);
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 0 10px 10px 10px;
+}
+
+.dash-upper {
+    width: 100%;
+    height: 8rem;
+    /* background-color: lightcoral; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.welcome-point h1 {
+    letter-spacing: -.5px;
+}
+
+.welcome-point p {
+    letter-spacing: -.2px;
+}
+
+.expense-btn button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    font-size: larger;
+    background-color: var(--yellow);
+    border: var(--border);
+    box-shadow: var(--shadow);
+    padding: .5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 3px;
+    margin-right: 2rem;
+}
+
+.expense-btn button:hover {
+    translate: 0px 2px;
+    box-shadow: 3px 3px;
+}
+
+.dash-middle {
+    width: 100%;
+    height: 12rem;
+    /* background-color: lightpink; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.dash-lower {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 15px;
+
+}
+
+.same-box {
+    border: var(--border);
+    box-shadow: var(--shadow);
+    width: 50%;
+    height: 52%;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.header-expense {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.header-expense h3 {
+    font-size: 1.3rem;
+}
+
+.header-heading {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.expense-category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

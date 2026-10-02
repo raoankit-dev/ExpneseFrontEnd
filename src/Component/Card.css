@@ -1,0 +1,31 @@
+.card-main {
+    border: var(--border);
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px 15px 15px;
+    gap: 15px;
+}
+
+.card-logo {
+    width: 4rem;
+    height: 4rem;
+    border: var(--border);
+    box-shadow: 3px 3px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-details h4 {
+    font-size: 1.1rem;
+}
+
+.card-details p {
+    font-size: 1.7rem;
+    font-weight: 900;
+    font-family: Arial, Helvetica, sans-serif;
+}
