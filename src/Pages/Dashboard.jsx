@@ -4,7 +4,7 @@ import SloganCard from "../Component/SloganCard"
 import Card from "../Component/Card"
 import Items from '../Component/Items'
 import AddExpense from '../Component/AddExpense'
-import AIChat from '../Component/AIchat'
+import AIChat from '../Component/AIChat'
 import { api, clearSession } from '../api'
 import { useNavigate } from 'react-router-dom'
 import logo from '../Assits/logo.png'
