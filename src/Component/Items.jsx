@@ -1,14 +1,16 @@
-import React from 'react'
 import './Items.css'
 
-const Items = () => {
+const Items = ({ expense, onDelete, onEdit }) => {
+  if (!expense) return null;
   return (
     <div>
       <div className='items'>
-        <p>Face Wash</p>
-        <p>Gromming</p>
-        <p>28/09/2026</p>
-        <p>₹ 24,530</p>
+        <p title={expense.title}>{expense.title}</p>
+        <p>{expense.category}</p>
+        <p>{new Date(expense.expense_date).toLocaleDateString('en-IN')}</p>
+        <p>₹ {Number(expense.amount).toLocaleString('en-IN')}</p>
+        {onEdit && <button className="edit-expense" onClick={() => onEdit(expense)} aria-label={`Edit ${expense.title}`}>Edit</button>}
+        {onDelete && <button className="delete-expense" onClick={() => onDelete(expense.id)} aria-label={`Delete ${expense.title}`}>×</button>}
       </div>
     </div>
   )

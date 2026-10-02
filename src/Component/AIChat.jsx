@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./AIChat.css";
+import { api } from '../api';
 
-function AIChat({ onClose }) {
+function AIChat({ onClose, userName = 'there' }) {
   const [message, setMessage] = useState("");
 
   const [messages, setMessages] = useState([
     {
       type: "ai",
-      text: "Hi Ankit! 👋 I'm your ExTracke AI Assistant.",
+      text: `Hi ${userName}! 👋 I'm your ExTracke AI Assistant.`,
     },
     {
       type: "ai",
@@ -21,20 +22,15 @@ function AIChat({ onClose }) {
     "How can I save money?",
   ];
 
-  const sendMessage = (text = message) => {
+  const [loading, setLoading] = useState(false);
+  const sendMessage = async (text = message) => {
     if (!text.trim()) return;
-
-    setMessages([
-      ...messages,
-      {
-        type: "user",
-        text: text,
-      },
-    ]);
-
+    setMessages((current) => [...current, { type: "user", text }]);
     setMessage("");
-
-    // Connect your AI API here
+    setLoading(true);
+    try { const result = await api.chat(text); setMessages((current) => [...current, { type: 'ai', text: result?.data?.answer || result?.answer || 'I could not find an answer right now.' }]); }
+    catch (err) { setMessages((current) => [...current, { type: 'ai', text: err.message }]); }
+    finally { setLoading(false); }
   };
 
   return (
@@ -96,27 +92,6 @@ function AIChat({ onClose }) {
           ))}
 
 
-          {/* Example insight card */}
-
-          <div className="ai-insight">
-
-            <div className="insight-title">
-              💡 Spending Insight
-            </div>
-
-            <p>
-              Your food expenses are currently
-              higher than your monthly average.
-            </p>
-
-            <strong>
-              Consider reducing food spending
-              by ₹500 this month.
-            </strong>
-
-          </div>
-
-
           {/* Suggestions */}
 
           <div className="ai-suggestions">
@@ -166,7 +141,7 @@ function AIChat({ onClose }) {
             className="ai-send"
             onClick={() => sendMessage()}
           >
-            ↑
+            {loading ? '…' : '↑'}
           </button>
 
         </div>

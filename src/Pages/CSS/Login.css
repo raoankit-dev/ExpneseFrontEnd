@@ -43,6 +43,10 @@
     font-size: 1rem;
 }
 
+.login-form-fields { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.login-form .status-message { max-width: 15vw; text-align: center; }
+.login-btn:disabled, .register-btn:disabled { opacity: .65; cursor: wait; }
+
 .login-form input:hover {
     box-shadow: 3px 3px 0 royalblue;
 }
@@ -71,4 +75,11 @@
 .login-btn:active {
     scale: 1.1;
     background-color: var(--blue);
+}
+
+@media (max-width: 700px) {
+  .login-form { width: min(90vw, 360px); background: rgba(242,242,242,.9); }
+  .login-form input, .login-form .status-message { width: min(75vw, 280px); max-width: none; }
+  .image-container { overflow: hidden; }
+  .login-bg-img { height: 100%; width: auto; max-width: none; object-fit: cover; }
 }

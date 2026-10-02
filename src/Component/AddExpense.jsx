@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./AddExpense.css";
 
-function AddExpense({ onClose }) {
+function AddExpense({ onClose, onSaved, expense = null }) {
   const [formData, setFormData] = useState({
-    amount: "",
-    category: "Food",
+    title: expense?.title || "",
+    amount: expense?.amount ?? "",
+    category: expense?.category || "Food",
     description: "",
     date: new Date().toISOString().split("T")[0],
     paymentMethod: "Cash",
@@ -17,12 +18,13 @@ function AddExpense({ onClose }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const [error, setError] = useState('');
+  const [saving, setSaving] = useState(false);
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    console.log("Expense:", formData);
-
-    // Connect your FastAPI API here
+    setError(''); setSaving(true);
+    try { await onSaved({ title: formData.title, amount: Number(formData.amount), category: formData.category }); onClose(); }
+    catch (err) { setError(err.message); } finally { setSaving(false); }
   };
 
   return (
@@ -34,10 +36,10 @@ function AddExpense({ onClose }) {
         <div className="expense-header">
 
           <div>
-            <h2>Add Expense</h2>
+            <h2>{expense ? 'Update Expense' : 'Add Expense'}</h2>
 
             <p>
-              Record your expense and stay on track.
+              {expense ? 'Correct the details and save your changes.' : 'Record your expense and stay on track.'}
             </p>
           </div>
 
@@ -58,6 +60,10 @@ function AddExpense({ onClose }) {
         >
 
           {/* Amount */}
+          <div className="expense-field">
+            <label>ITEM *</label>
+            <div className="expense-input"><input type="text" name="title" placeholder="What did you spend on?" value={formData.title} onChange={handleChange} minLength="2" maxLength="50" required /></div>
+          </div>
           <div className="expense-field">
 
             <label>AMOUNT *</label>
@@ -158,8 +164,9 @@ function AddExpense({ onClose }) {
               type="submit"
               className="add-expense-btn"
             >
-              Add Expense +
+              {saving ? 'Saving…' : expense ? 'Update Expense +' : 'Add Expense +'}
             </button>
+            {error && <p className="status-message error">{error}</p>}
 
           </div>
 

@@ -104,3 +104,14 @@ span {
     text-align: center;
     font-size: 17px;
 }
+
+@media (max-width: 700px) {
+  .home-header { left: 5%; width: 90%; padding: 0 12px; }
+  .home-logo { width: 6rem; }
+  .home-links { gap: 8px; }
+  .home-links a { padding: 7px 11px; font-size: .85rem; }
+  .hero { left: 5%; top: 7rem; width: 90%; height: 60vh; }
+  .greet { font-size: clamp(2.2rem, 11vw, 3.5rem); text-align: center; }
+  .descr { width: 95%; font-size: 15px; }
+  .descr span { width: auto; font-size: 14px; text-align: center; }
+}
