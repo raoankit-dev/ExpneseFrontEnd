@@ -1,4 +1,4 @@
-const API_BASE = 'https://expenseback-ciwj.onrender.com/api/v1';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://expenseback-ciwj.onrender.com/api/v1';
 
 export async function apiRequest(path, options = {}) {
   const token = localStorage.getItem('expense_token');
