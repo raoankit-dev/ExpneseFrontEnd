@@ -13,6 +13,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = React.useState(null); const [expenses, setExpenses] = React.useState([]); const [analysis, setAnalysis] = React.useState(null);
   const [activeView, setActiveView] = React.useState('dashboard');
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const [darkMode, setDarkMode] = React.useState(() => localStorage.getItem('expense_dark_mode') === 'true');
   const [showExpense, setShowExpense] = React.useState(false); const [editingExpense, setEditingExpense] = React.useState(null); const [showAI, setShowAI] = React.useState(false); const [error, setError] = React.useState(''); const [loading, setLoading] = React.useState(true);
   const loadData = React.useCallback(async () => { try { const [me, list] = await Promise.all([api.me(), api.expenses()]); setUser(me?.data || me); setExpenses(list?.data || []); try { const insight = await api.analyze(); setAnalysis(insight?.data || insight); } catch { /* the dashboard still works without AI analysis */ } } catch (err) { setError(err.message); } finally { setLoading(false); } }, []);
@@ -29,6 +30,9 @@ const Dashboard = () => {
   const monthExpenses = expenses.filter((e) => { const date = new Date(e.expense_date); return date.getMonth() === month && date.getFullYear() === year; });
   const monthTotal = monthExpenses.reduce((sum, e) => sum + Number(e.amount), 0); const categories = monthExpenses.reduce((all, e) => ({ ...all, [e.category]: (all[e.category] || 0) + Number(e.amount) }), {}); const topCategory = Object.entries(categories).sort((a, b) => b[1] - a[1])[0];
   const openAI = () => { setShowAI(true); };
+  const selectView = (view) => { setActiveView(view); setMenuOpen(false); };
+  const openAssistant = () => { openAI(); setMenuOpen(false); };
+  const signOut = () => { setMenuOpen(false); logout(); };
   const toggleDarkMode = () => setDarkMode((current) => { const next = !current; localStorage.setItem('expense_dark_mode', String(next)); return next; });
   return (
     <div>
@@ -39,12 +43,23 @@ const Dashboard = () => {
           <div className="dash-logo">
             <img src={logo} alt="logo" />
           </div>
-          <div className="dash-nav">
+          <button
+            type="button"
+            className="mobile-menu-button"
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+          <div className={`dash-nav ${menuOpen ? 'menu-open' : ''}`}>
             <ul>
-              <li onClick={() => setActiveView('dashboard')}><button type="button" className={`nav-link ${activeView === 'dashboard' ? 'active' : ''}`}>Dashboard</button></li>
-              <li onClick={openAI}><button type="button" className="nav-link">A.I</button></li>
-              <li onClick={() => setActiveView('expenses')}><button type="button" className={`nav-link ${activeView === 'expenses' ? 'active' : ''}`}>Expenses</button></li>
-              <li onClick={logout}><button type="button" className="nav-link">Log out</button></li>
+              <li onClick={() => selectView('dashboard')}><button type="button" className={`nav-link ${activeView === 'dashboard' ? 'active' : ''}`}>Dashboard</button></li>
+              <li onClick={openAssistant}><button type="button" className="nav-link">A.I</button></li>
+              <li onClick={() => selectView('expenses')}><button type="button" className={`nav-link ${activeView === 'expenses' ? 'active' : ''}`}>Expenses</button></li>
+              <li onClick={signOut}><button type="button" className="nav-link">Log out</button></li>
             </ul>
           </div>
           <div className="dash-slogan">

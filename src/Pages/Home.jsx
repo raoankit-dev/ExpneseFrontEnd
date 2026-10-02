@@ -1,11 +1,12 @@
 import "./CSS/Home.css"
+import logo from '../Assits/logo.png'
 
 const Home = () => {
   return (
     <div className='container'>
       <header className="home-header">
         <div className="home-logo">
-          <img src="./src/Assits/logo.png" alt="logo" />
+          <img src={logo} alt="ExTracke logo" />
         </div>
         <nav className="home-links">
           <a href="/register">Join Us!</a>
